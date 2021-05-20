@@ -22,7 +22,7 @@ import { ActivatedRoute } from '@angular/router';
 import { JhiDataUtils } from 'ng-jhipster';
 <%_ } _%>
 import {
-I<%= entityAngularName %>,
+<%= entityAngularName %>,
 <%_ const textImportAlreadyDeclared = [];
 fields.forEach(field => {
 if (field.fieldIsEnum && !textImportAlreadyDeclared.includes(field.fieldType)) {
@@ -31,7 +31,6 @@ if (field.fieldIsEnum && !textImportAlreadyDeclared.includes(field.fieldType)) {
 <%_ }
 }); _%>
 } from 'app/shared/model/<%= entityModelFileName %>.model';
-import { <%= entityAngularName %>ModalService } from '../<%= entityFileName %>-modal.service';
 
 @Component({
 selector: '<%= jhiPrefixDashed %>-<%= entityFileName %>-view',
@@ -41,7 +40,7 @@ export class <%= entityAngularName %>ViewComponent implements OnInit {
     @Input() mode = 'basicView';
     @Input() contentResponse: any;
     @Input() contentClose: Function;
-    @Input() <%= entityInstance %>: I<%= entityAngularName %>;
+    @Input() <%= entityInstance %>: <%= entityAngularName %>;
     <%_ const textVarAlreadyDeclared = [];
     fields.forEach(field => {
         if (field.fieldIsEnum && !textVarAlreadyDeclared.includes(field.fieldType)) {

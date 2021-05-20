@@ -46,11 +46,11 @@
         </ng-container>
     </ng-container>
     <ng-template #basicForm>
-        <nz-row nzGutter="16">
-        <nz-col [nzLg]="8" [nzMd]="12" [nzSm]="24">
+        <nz-row nzGutter="24">
+        <nz-col [nzLg]="6" [nzMd]="12" [nzSm]="24">
             <nz-form-item>
-                <nz-form-label [nzSpan]="null">ID</nz-form-label>
-                <nz-form-control [nzSpan]="null">
+                <nz-form-label [nzSpan]="8">ID</nz-form-label>
+                <nz-form-control [nzSpan]="14">
                     <input nz-input value="{{<%= entityInstance %>.id}}" type="text" disabled/>
                 </nz-form-control>
             </nz-form-item>
@@ -77,10 +77,10 @@
                 fieldInputType = 'hidden';
             }
             _%>
-            <nz-col [nzLg]="8" [nzMd]="12" [nzSm]="24">
+            <nz-col [nzLg]="6" [nzMd]="12" [nzSm]="24">
                 <nz-form-item>
-                    <nz-form-label [nzSpan]="null" <% if (fields[idx].fieldValidate === true && fields[idx].fieldValidateRules.includes('required')) { %> nzRequired<% } %>><%= fieldTitle %></nz-form-label>
-                    <nz-form-control [nzSpan]="null" <% if (fields[idx].fieldValidate === true && fieldType !== 'Boolean') { %> nzHasFeedback<% } %>>
+                    <nz-form-label [nzSpan]="8" <% if (fields[idx].fieldValidate === true && fields[idx].fieldValidateRules.includes('required')) { %> nzRequired<% } %>><%= fieldTitle %></nz-form-label>
+                    <nz-form-control [nzSpan]="14" <% if (fields[idx].fieldValidate === true && fieldType !== 'Boolean') { %> nzHasFeedback<% } %>>
                         <%_ if (fields[idx].fieldType === 'String') { _%>
                         <input nz-input formControlName="<%= fieldName %>" placeholder="" type="text"/>
                         <%_ } else if (['byte[]', 'ByteBuffer'].includes(fieldType) && fieldTypeBlobContent === 'text') { _%>
@@ -170,14 +170,14 @@
                 <%_ if(relationshipType === 'many-to-many' && relationships[idx].ownerSide === true) { _%>
                     [nzSpan]="24"
                 <%_ } else { _%>
-                    [nzLg]="8"
+                    [nzLg]="6"
                     [nzMd]="12"
                     [nzSm]="24"
                 <%_ } _%>
                 >
                     <nz-form-item>
-                        <nz-form-label [nzSpan]="null" <%_ if (relationshipRequired) { _%> nzRequired <%_ } _%>><%= relationshipNameHumanized %></nz-form-label>
-                        <nz-form-control [nzSpan]="null"  nzHasFeedback>
+                        <nz-form-label [nzSpan]="8" <%_ if (relationshipRequired) { _%> nzRequired <%_ } _%>><%= relationshipNameHumanized %></nz-form-label>
+                        <nz-form-control [nzSpan]="14"  nzHasFeedback>
                     <%_ if (relationshipType === 'many-to-one' || (relationshipType === 'one-to-one' && ownerSide === true)) { _%>
                             <nz-select style="width: 100%;" name="<%= relationshipName %>"
                                 (nzOpenChange)="loadMore<%= relationshipNameCapitalizedPlural %>()"

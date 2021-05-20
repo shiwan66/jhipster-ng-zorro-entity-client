@@ -37,9 +37,9 @@
                 </ng-template>
                 <nz-card-meta [nzAvatar]="nzAvatar" [nzTitle]="nzTitle" [nzDescription]="nzDescription"
                             style="height: 95px">
-                    <ng-template #nzAvatar>
+                    <%_ <!-- _%> <ng-template #nzAvatar>
                         <nz-avatar nzSize="large" [nzSrc]="item.avatar"></nz-avatar>
-                    </ng-template>
+                    </ng-template> <%_ --> _%>
                     <ng-template #nzTitle>
                         <a>{{item.id}}</a>
                     </ng-template>

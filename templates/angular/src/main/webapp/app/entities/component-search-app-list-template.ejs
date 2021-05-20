@@ -25,11 +25,12 @@
                     </a>
                     <ul nz-menu>
                         <li nz-menu-item>...</li>
-                    </ul><tag-select>
+                    </ul>
+                    <%_ <!-- _%> <tag-select>
                         <nz-tag *ngFor="let i of categories; let idx = index" nzMode="checkable" [nzChecked]="i.value" (nzCheckedChange)="changeCategory($event, idx)">
                             {{i.text}}
                         </nz-tag>
-                    </tag-select>
+                    </tag-select><%_ --> _%>
                 </nz-dropdown>
             </ng-template>
             <nz-card-meta [nzTitle]="item.id" [nzAvatar]="nzAvatar">
@@ -54,5 +55,4 @@
     </nz-list-item>
     </nz-col>
 </nz-row>
-</nz-list>
 </ng-container>

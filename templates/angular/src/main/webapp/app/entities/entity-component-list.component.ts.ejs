@@ -22,8 +22,6 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { HttpErrorResponse, <%_ if (pagination !== 'no') { _%>HttpHeaders, <% } %>HttpResponse } from '@angular/common/http';
 import { JhiEventManager, <% if (pagination !== 'no') { %>JhiParseLinks, <% } %>JhiAlertService<% if (fieldsContainBlob) { %>, JhiDataUtils<% } %> } from 'ng-jhipster';
 import { NzMessageService, NzModalRef, NzModalService } from 'ng-zorro-antd';
-import { Principal } from 'app/core';
-import { ITEMS_PER_PAGE, SEARCH_DEBOUNCE_TIME } from 'app/shared';
 import {
     I<%= entityAngularName %>,
     <%_ const textsAlreadyDeclared = [];
@@ -37,6 +35,7 @@ import {
 import { <%= entityAngularName %>Service } from '../<%= entityFileName %>.service';
 import { <%= entityAngularName %>ModalService } from 'app/entities/<%= entityFileName %>';
 import * as moment from 'moment'
+import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 
 @Component({
     selector: '<%= jhiPrefixDashed %>-<%= entityFileName %>-list',
@@ -110,10 +109,7 @@ export class <%= entityAngularName %>ListComponent implements OnInit, OnDestroy 
         });
     }
     ngOnInit() {
-        this.loadAll();
-        this.principal.identity().then(account => {
-            this.currentAccount = account;
-        });
+        this.search();
         this.registerChangeIn<%= entityClassPlural %>();
     }
 

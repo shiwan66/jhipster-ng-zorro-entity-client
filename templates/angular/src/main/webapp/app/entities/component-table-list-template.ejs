@@ -1,8 +1,8 @@
 <ng-container *ngSwitchCase="'tableList'">
 <nz-card [nzBordered]="false">
-    <form nz-form [nzLayout]="'inline'" (ngSubmit)="search()" class="filter-form">
+    <form nz-form [nzLayout]="'horizontal'" (ngSubmit)="search()" class="filter-form">
         <nz-row>
-            <nz-col nzMd="8" nzSm="24">
+            <nz-col nzMd="6" nzSm="24">
                 <nz-form-item>
                     <nz-form-label [nzSpan]="6" nzFor="id">ID</nz-form-label>
                     <nz-form-control>
@@ -32,10 +32,10 @@
                     fieldInputType = 'hidden';
                 }
                 _%>
-            <nz-col nzMd="8" nzSm="24" <%_ if( idx > 0 ) { _%> *ngIf="expandSearchForm" <%_ } _%>>
+            <nz-col nzMd="6" nzSm="24" <%_ if( idx > 0 ) { _%> *ngIf="expandSearchForm" <%_ } _%>>
                 <nz-form-item>
                     <nz-form-label [nzSpan]="6" nzFor="<%= fieldName %>"><%= fieldTitle %></nz-form-label>
-                    <nz-form-control>
+                    <nz-form-control [nzSpan]="12">
                         <%_ if (fields[idx].fieldType === 'String') { _%>
                         <input nz-input name="<%= fieldName %>" placeholder="" type="text" [(ngModel)]="filters.<%= fieldName %>"/>
                         <%_ } else if (['byte[]', 'ByteBuffer'].includes(fieldType) && fieldTypeBlobContent === 'text') { _%>

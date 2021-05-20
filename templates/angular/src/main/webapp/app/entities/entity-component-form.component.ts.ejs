@@ -48,7 +48,7 @@ if (field.fieldIsEnum && !textImportAlreadyDeclared.includes(field.fieldType)) {
 }); _%>
 } from 'app/shared/model/<%= entityModelFileName %>.model';
 import { <%= entityAngularName %>Service } from '../<%= entityFileName %>.service';
-import { <%= entityAngularName %>ModalService } from '../<%= entityFileName %>-modal.service';
+import * as moment from 'moment';
 <%_
 let hasRelationshipQuery = false;
 Object.keys(differentRelationships).forEach(key => {

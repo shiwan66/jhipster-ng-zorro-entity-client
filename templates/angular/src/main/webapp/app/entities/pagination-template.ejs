@@ -24,7 +24,6 @@ eventSubscriber: Subscription;
 <%_ if (searchEngine === 'elasticsearch') { _%>
 currentSearch: string;
 <%_ } _%>
-searchDebounce: Subject<void>;
 pageIndex: number;
 pageSize: number;
 totalItems: number;
@@ -34,7 +33,7 @@ filters: any;
 sorter: any;
 selectedAll: boolean;
 selectedIndeterminate: boolean;
-selectedComparator: Function;
+selectedComparator: (item:any) => any;
 selected: Array<I<%= entityAngularName %>>;
 batchDeleteConfirmModal: NzModalRef;
 <%_ const textsAlreadyDeclared = [];
@@ -53,7 +52,6 @@ constructor(
     private dataUtils: JhiDataUtils,
     <%_ } _%>
     private eventManager: JhiEventManager,
-    private principal: Principal,
     public <%= entityInstance %>ModalService: <%= entityAngularName %>ModalService
 ) {
     this.pageIndex = 1;
@@ -79,12 +77,6 @@ constructor(
     this.selectedComparator = item => {
         return this.selected.some(value => value.id === item.id);
     };
-    this.searchDebounce = new Subject();
-    <%_ if (searchEngine === 'elasticsearch') { _%>
-    this.searchDebounce.pipe(debounceTime(SEARCH_DEBOUNCE_TIME)).subscribe(() => this.search());
-    <%_ } else {_%>
-    this.searchDebounce.pipe(debounceTime(SEARCH_DEBOUNCE_TIME)).subscribe(() => this.loadAll());
-    <%_ } _%>
 }
 
 loadAll(reset?, loadMore?): void {
@@ -234,4 +226,11 @@ clear() {
     };
     this.loadAll(true);
 }
+<%_ } else { _%>
+search() {
+    this.loadAll()
+}
+clear() {
+    this.loadAll(true)
+}    
 <%_ } _%>
